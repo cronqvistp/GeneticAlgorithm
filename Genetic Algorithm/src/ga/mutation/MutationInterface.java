@@ -1,4 +1,6 @@
-package GA;
+package ga.mutation;
+
+import ga.Individual;
 
 public interface MutationInterface {
 	

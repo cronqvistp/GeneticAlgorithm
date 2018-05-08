@@ -1,4 +1,4 @@
-package GA;
+package ga.mutation;
 
 public abstract class Mutation implements MutationInterface {
 	

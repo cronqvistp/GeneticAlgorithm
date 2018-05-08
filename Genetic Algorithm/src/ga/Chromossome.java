@@ -1,4 +1,4 @@
-package GA;
+package ga;
 
 public class Chromossome {
 	private int fitness;

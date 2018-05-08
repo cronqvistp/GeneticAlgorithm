@@ -1,6 +1,8 @@
-package GA;
+package ga.crossover;
 
 import java.util.ArrayList;
+
+import ga.Individual;
 
 public interface CrossoverInterface {
 	

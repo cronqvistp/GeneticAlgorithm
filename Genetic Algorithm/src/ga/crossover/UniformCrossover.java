@@ -1,12 +1,17 @@
-package GA;
+package ga.crossover;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OnePointCrossover extends Crossover {
+import ga.Individual;
+
+public class UniformCrossover extends Crossover {
 	
-	public OnePointCrossover() {
+	private float threshold=0.5f;
+	
+	public UniformCrossover(float threshold) {
 		super();
+		this.threshold = threshold;
 	}
 
 	@Override
@@ -15,21 +20,28 @@ public class OnePointCrossover extends Crossover {
 		ArrayList<Integer> chromossome2 = parent2.getChromossome();
 		int size = chromossome1.size();
 		
+		
 		Random random = new Random();
-		int crossoverPoint = random.nextInt(size-1) + 1;
+		float[] probabilityArray = new float[size];
+		for(int i=0; i<size; i++) {
+			probabilityArray[i] = random.nextFloat();
+		}
+		
 		
 		ArrayList<Individual> offspring = new ArrayList<Individual>();
 		
 		ArrayList<Integer> offspring1 = new ArrayList<Integer>();
 		ArrayList<Integer> offspring2 = new ArrayList<Integer>();
-		for(int i = 0; i < crossoverPoint; i++) {
-			offspring1.add(chromossome1.get(i).intValue());
-			offspring2.add(chromossome2.get(i).intValue());
-		}
 		
-		for(int i = crossoverPoint; i < size; i++) {
+		for(int i = 0; i < size; i++) {
+			
+			if (probabilityArray[i] > threshold ) {
+				offspring1.add(chromossome1.get(i).intValue());
+				offspring2.add(chromossome2.get(i).intValue());
+			}else {
 			offspring1.add(chromossome2.get(i).intValue());
 			offspring2.add(chromossome1.get(i).intValue());
+			}
 		}
 		
 		offspring.add(new Individual(offspring1));

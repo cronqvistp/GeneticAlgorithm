@@ -1,7 +1,9 @@
-package GA;
+package ga.mutation;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import ga.Individual;
 
 public class RandomResettingMutation extends Mutation {
 	
@@ -13,13 +15,13 @@ public class RandomResettingMutation extends Mutation {
 	public void mutate(Individual individual) {
 		Random random = new Random();
 		ArrayList<Integer> chromossome = individual.getChromossome();
-		
-		for(int i = 0; i < chromossome.size(); i++) {
-			double chance = random.nextDouble();
-			if(super.mutationProbability <= chance) {
-				chromossome.set(i, random.nextInt(range));
-			}
+			
+		double chance = random.nextDouble();
+		if(super.mutationProbability >= chance) {
+			
+			chromossome.set(random.nextInt(range), random.nextInt(range));
 		}
+		
 		
 	}
 

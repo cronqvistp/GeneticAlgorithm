@@ -1,9 +1,12 @@
-package GA;
+package ga.selection;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
-public class TournamentParentSelection extends ParentSelection {
+import ga.Individual;
+
+public class TournamentParentSelection extends Selection {
 	
 	private int sampleNumber;
 	
@@ -13,19 +16,17 @@ public class TournamentParentSelection extends ParentSelection {
 	}
 
 	@Override
-	public ArrayList<Individual> selection(ArrayList<Individual> individuals) {
+	public ArrayList<Individual> selection(ArrayList<Individual> individuals, int size, Comparator<Individual> comparator) {
 		ArrayList<Individual> parents = new ArrayList<Individual>();
-		
-		int size = individuals.size();
 		
 		for(int i = 0; i < size; i++) {
 			int[] individualsIndices = randomSampling(size);
 			
 			int bestIndice = individualsIndices[0];
-			int bestFitness = individuals.get(bestIndice).getFitness();
+			float bestFitness = individuals.get(bestIndice).getFitness();
 			
 			for(int j = 1; j < individualsIndices.length; j++) {
-				int fitness = individuals.get(individualsIndices[j]).getFitness();
+				float fitness = individuals.get(individualsIndices[j]).getFitness();
 				if(fitness > bestFitness) {
 					bestFitness = fitness;
 					bestIndice = individualsIndices[j];

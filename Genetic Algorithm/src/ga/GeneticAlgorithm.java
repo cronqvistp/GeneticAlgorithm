@@ -1,4 +1,4 @@
-package GA;
+package ga;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -82,6 +82,7 @@ public class GeneticAlgorithm {
 			@Override
 			public int compare(Chromossome o1, Chromossome o2) {
 				return Integer.compare(o1.getFitness(), o2.getFitness());
+				
 			}
 			
 		});
